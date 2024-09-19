@@ -15,6 +15,8 @@ from torch import nn
 import torch.nn.functional as F
 from typing import Tuple
 
+__all__ = ["train", "evaluate", "predict"]
+
 def __train_step(model: torch.nn.Module,
                  dataloader: torch.utils.data.DataLoader,
                  loss_fn: torch.nn.Module,
@@ -114,7 +116,7 @@ def train(model: torch.nn.Module,
         optimizer          - optimizer used to update the model's parameters
         epochs             - number of training steps performed on the model
         device             - where to run the training at ("cpu" "mps" "cuda")
-        test_freq          - frequency at which the model's testing scores are printed
+        test_freq          - the interval, in epochs, at which the model's scores are printed
     
     Returns:
         {train_loss: [],
