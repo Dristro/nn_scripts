@@ -1,5 +1,3 @@
-# Testing the engine.py file functions here before adding them to the script
-
 """
 This script contains all the training functions needed for
 training torch models.

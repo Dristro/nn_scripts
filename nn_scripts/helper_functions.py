@@ -13,10 +13,7 @@ import helper_functions
 """
 import torch as torch
 import matplotlib.pyplot as plt
-import pandas as pd
 import numpy as np
-# Pred and plot image function from notebook 04
-# See creation: https://www.learnpytorch.io/04_pytorch_custom_datasets/#113-putting-custom-image-prediction-together-building-a-function
 from typing import List
 import torchvision
 
