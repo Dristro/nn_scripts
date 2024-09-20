@@ -1,16 +1,3 @@
-"""
-This is the helper functions module for the PyTorch course and is not related to the TensorFlow helper_functions.py
-
-To import the file run the following:
-
-import sys
-import os
-current_dir = os.getcwd()
-parent_dir = os.path.dirname(current_dir)
-sys.path.append(parent_dir)
-
-import helper_functions
-"""
 import torch as torch
 import matplotlib.pyplot as plt
 import numpy as np
