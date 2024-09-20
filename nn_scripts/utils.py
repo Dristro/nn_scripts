@@ -15,6 +15,7 @@ def save_model(model: torch.nn.Module,
         target_dir  - where to save the model (specific path, not relative)
         model_name  - name of the saved file
         format      - save format (weights, model, etc)
+                      (model only as of now)
 
     Returns:
         No return, but saves the model to the given directory
