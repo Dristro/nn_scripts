@@ -93,6 +93,7 @@ def __test_step(model: torch.nn.Module,
         return test_loss, test_accuracy
 
 
+from typing import Dict, List
 def train(model: torch.nn.Module,
           train_dataloader: torch.utils.data.DataLoader,
           test_dataloader: torch.utils.data.DataLoader,
@@ -100,7 +101,8 @@ def train(model: torch.nn.Module,
           optimizer: torch.optim.Optimizer,
           epochs: int,
           device: torch.device,
-          test_freq: int = 1):
+          writer: torch.utils.tensorboard.SummaryWriter = None,
+          print_freq: int = 1) -> Dict[str, List]:
     """
     Trains the model for "epochs" and returns a dict with the model's
     performance per epoch on the training data.
@@ -113,7 +115,8 @@ def train(model: torch.nn.Module,
         optimizer          - optimizer used to update the model's parameters
         epochs             - number of training steps performed on the model
         device             - where to run the training at ("cpu" "mps" "cuda")
-        test_freq          - the interval, in epochs, at which the model's scores are printed
+        print_freq         - the interval, in epochs, at which the model's scores are printed
+        writer             - SummaryWriter instance to log the model's metrics
     
     Returns:
         {train_loss: [],
@@ -142,9 +145,20 @@ def train(model: torch.nn.Module,
         results["train_accuracy"].append(train_accuracy)
         results["test_loss"].append(test_loss)
         results["test_accuracy"].append(test_accuracy)
-        if test_freq == 0:
+
+        if writer:
+            writer.add_scalars(main_tag = "Loss",
+                               tag_scalar_dict = {"train_loss": train_loss,
+                                                  "test_loss": test_loss},
+                               global_step = epoch)
+            writer.add_scalars(main_tag = "Accuracy",
+                               tag_scalar_dict = {"train_accuracy": train_accuracy,
+                                                  "test_accuracy": test_accuracy},
+                               global_step = epoch)
+            writer.close()
+        if print_freq == 0:
             continue
-        elif epoch % test_freq == 0:
+        elif epoch % print_freq == 0:
             print(f"train_loss : {train_loss:.4f}, train_acc : {train_accuracy*100:.2f}% | test_loss : {train_loss:.4f}, test_acc : {train_accuracy*100:.2f}%")
     return results
 

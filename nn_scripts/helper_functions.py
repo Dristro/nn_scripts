@@ -27,6 +27,7 @@ def walk_through_dir(dir_path):
     number of images (files) in each subdirectory
     name of each subdirectory
     """
+    import os
     for dirpath, dirnames, filenames in os.walk(dir_path):
         print(f"There are {len(dirnames)} directories and {len(filenames)} images in '{dirpath}'.")
 
@@ -135,8 +136,8 @@ def plot_loss_curves(results):
     loss = results["train_loss"]
     test_loss = results["test_loss"]
 
-    accuracy = results["train_acc"]
-    test_accuracy = results["test_acc"]
+    accuracy = results["train_accuracy"]
+    test_accuracy = results["test_accuracy"]
 
     epochs = range(len(results["train_loss"]))
 
@@ -152,8 +153,8 @@ def plot_loss_curves(results):
 
     # Plot accuracy
     plt.subplot(1, 2, 2)
-    plt.plot(epochs, accuracy, label="train_accuracy")
-    plt.plot(epochs, test_accuracy, label="test_accuracy")
+    plt.plot(epochs, accuracy, label="train_acc")
+    plt.plot(epochs, test_accuracy, label="test_acc")
     plt.title("Accuracy")
     plt.xlabel("Epochs")
     plt.legend()
