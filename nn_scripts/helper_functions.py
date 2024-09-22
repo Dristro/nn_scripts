@@ -160,7 +160,6 @@ def plot_loss_curves(results):
     plt.legend()
 
 def pred_and_plot_image(
-    self,
     model: torch.nn.Module,
     image_path: str,
     class_names: List[str] = None,
@@ -216,6 +215,7 @@ def pred_and_plot_image(
     target_image_pred_label = torch.argmax(target_image_pred_probs, dim=1)
 
     # 8. Plot the image alongside the prediction and prediction probability
+    plt.figure(figsize=(7, 7))
     plt.imshow(
         target_image.squeeze().permute(1, 2, 0)
     )  # make sure it's the right size for matplotlib
