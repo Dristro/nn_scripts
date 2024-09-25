@@ -159,7 +159,7 @@ def train(model: torch.nn.Module,
         if print_freq == 0:
             continue
         elif epoch % print_freq == 0:
-            print(f"train_loss : {train_loss:.4f}, train_acc : {train_accuracy*100:.2f}% | test_loss : {test_loss:.4f}, test_acc : {test_accuracy*100:.2f}%")
+            print(f"Epoch: {epoch+1} | train_loss : {train_loss:.4f}, train_acc : {train_accuracy*100:.2f}% | test_loss : {test_loss:.4f}, test_acc : {test_accuracy*100:.2f}%")
     return results
 
 def evaluate(model: torch.nn.Module,
